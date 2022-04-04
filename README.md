@@ -1,5 +1,7 @@
-# Impressions
 ![Impressions Logo](Img/ImpressionsLogo.png)
+
+# Impressions
+
 Impressions analyzes raw plantar pressure data to measure various aspects of walking. It can generate a plantar pressure report, videos of applied pressure over time (GIFs), and data for research projects within minutes of data collection. 
 
 Impressions uses specific file types of pressure data, basic subject parameters (age, height, mass, and foot length), and various processing selections to automate most processing steps. Impressions is completely coded in Matlab (requiring version 2017b+ and the image processing toolbox), and thus can be customized as desired. Impressions functions best when a person walks at a constant pace over the mat without any assistance.
