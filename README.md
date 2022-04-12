@@ -106,7 +106,7 @@ The center of pressure (CoP) masking method uses the entire center of pressure p
 ### 66% CoP
 The 66% CoP masking method uses only the first 66% of the CoP to generate its linear trendline. The rationale behind this idea, is that in typical walkers during late stance, the CoP progressed medially as the large toe is used during push off.
 <p align="center">
-  <img src="Img/66CoP.PNG">
+  <img src="Img/66CoPMask.PNG">
 </p>
 
 ### CoP Inter-Peak
@@ -117,9 +117,7 @@ Peaks are measured along the global reference frame, thus if the participant is 
 
 ## Overall Masking Methods
 Once the foot progression angle is identified, the process of masking is the same for all mask types. These masks split the foot pressure into six regions (medial/lateral divisions of heel, arch, and forefoot). The line of foot progression bisects the foot into medial and lateral regions. Impressions will search along the length of the foot progression line to find the edge of the foot region which defines the heel base and toe top of the mask (red circles). This length is split into 30% heel, 30% arch, 40% forefoot regions and HA = heel-arch and FA = fore-arch points are located (purple circles). Impressions also searches medially and laterally in lines parallel to the foot progression line to identify the medial and lateral borders of the pressure. Lines perpendicular to the foot progression angle bisect the HA/FAs to split the pressure longitudinally.
-<p align="center">
-  <img src="Img/MaskSegmentation.PNG">
-</p>
+<img align="right" src="Img/MaskSegmentation.PNG">
 
 ### Mask Normalization
 After the masks are created, each step is normalized by re-orienting the mask using its foot progression angle. It is rotated by the mask orientation to display each step upright. Once the orientation is normalized, then the dimensions of each step is normalized to 100% of its length and width, and finally normalized to 100% of the stance period. This results in a 100x100x100 matrix displaying dynamic foot pressures by the respective length, width, and duration of each step. All this data can be found in the “Norm” variable within the results .mat file for each participant.
@@ -143,6 +141,7 @@ Impressions will export an automated report forquick overview and display of gai
 <p align="center">
   <img src="Img/Report.PNG">
 </p>
+
 ### Page 1 (top left)
 The first page of the report displays the subject demographics, general processing settings, foot progression angles, and the first 4 PP trials. Only the first 4 are shown because displaying more shrinks the size of each trial. The foot progression angle chart will show the values of the first 2 steps on each side, up to 10 trials. The average and standard deviation of these angles are shown on the right.
 
