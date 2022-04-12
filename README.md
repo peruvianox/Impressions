@@ -1,4 +1,4 @@
-![Impressions Logo](Img/ImpressionsLogo.png)
+<img align="left" width="200" height="200" src="Img/ImpressionsLogo.png">
 
 # Impressions
 
