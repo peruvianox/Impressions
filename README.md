@@ -115,8 +115,8 @@ Peaks are measured along the global reference frame, thus if the participant is 
 </p>
 
 ## Overall Masking Methods
-Once the foot progression angle is identified, the process of masking is the same for all mask types. These masks split the foot pressure into six regions (medial/lateral divisions of heel, arch, and forefoot). The line of foot progression bisects the foot into medial and lateral regions. Impressions will search along the length of the foot progression line to find the edge of the foot region which defines the heel base and toe top of the mask (red circles). This length is split into 30% heel, 30% arch, 40% forefoot regions and HA = heel-arch and FA = fore-arch points are located (purple circles). Impressions also searches medially and laterally in lines parallel to the foot progression line to identify the medial and lateral borders of the pressure. Lines perpendicular to the foot progression angle bisect the HA/FAs to split the pressure longitudinally.
 <img align="right" src="Img/MaskSegmentation.PNG">
+Once the foot progression angle is identified, the process of masking is the same for all mask types. These masks split the foot pressure into six regions (medial/lateral divisions of heel, arch, and forefoot). The line of foot progression bisects the foot into medial and lateral regions. Impressions will search along the length of the foot progression line to find the edge of the foot region which defines the heel base and toe top of the mask (red circles). This length is split into 30% heel, 30% arch, 40% forefoot regions and HA = heel-arch and FA = fore-arch points are located (purple circles). Impressions also searches medially and laterally in lines parallel to the foot progression line to identify the medial and lateral borders of the pressure. Lines perpendicular to the foot progression angle bisect the HA/FAs to split the pressure longitudinally.
 
 ### Mask Normalization
 After the masks are created, each step is normalized by re-orienting the mask using its foot progression angle. It is rotated by the mask orientation to display each step upright. Once the orientation is normalized, then the dimensions of each step is normalized to 100% of its length and width, and finally normalized to 100% of the stance period. This results in a 100x100x100 matrix displaying dynamic foot pressures by the respective length, width, and duration of each step. All this data can be found in the “Norm” variable within the results .mat file for each participant.
@@ -158,9 +158,9 @@ In addition to the normalized average steps and centers of pressure described ab
 ## Validation
 Impressions has been validated against two separate sources: optical motion capture and the novel processing software. These data are only for PP data collected with Novel emed XL.
 
+<img align="right" src="Img/OrientationAccuracy.PNG">
 ### Impressions vs Optical Motion Capture (OMC)
 #### Masking Accuracy: Orientation and Position
-<img align="right" src="Img/OrientationAccuracy.PNG">
 Mask accuracy was validated by comparing the mask orientation (via foot progression angle) and position (mask placement in the global coordinate system).
 Accuracy for each of the 5 masking types are shown to the right. FPA errors for each masking method compared to optical motion capture. The median, interquartile range, and outliers are shown in red. The mean and SD are shown in black. *** = p < 0.001, * = p < 0.05.
 
