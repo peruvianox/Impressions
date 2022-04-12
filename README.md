@@ -29,6 +29,8 @@ Impressions uses specific file types of pressure data, basic subject parameters 
 - Various Figures: PNG files of the force distributions and close up still images (pg 3&4 of report)
 - Saved XXX_Results.mat file: This file contains all the saved data from the matlab workspace so that the data may be saved in an analysis-friendly version for future reference. Most data are stored in the “DynamicPPTrials” or “Regions” structures.
 - GIF movie files for each: If selected, these GIFs show the dynamic pressure distribution and CoP progression. The black dot shows the CoP for the current frame, while the red dots show the COP from the preceding 3 frames so that CoP velocity may be better interpreted.
+![Left & Right Steps](Img/L-RSteps.gif)
+![Full Trial](Img/Trial.gif)
 
 ### Supported PP Mats and file types
 Upon initial release, Impressions only functions with data from a RS Scan 2m or Novel emedXL mat. These files can initially be loaded as raw files directly from RS Scan or Novel or as pre-processed .mat files (recommended file after first time loading the raw files).
@@ -36,12 +38,16 @@ Upon initial release, Impressions only functions with data from a RS Scan 2m or 
 ## Procedures
 ### Export Raw Plantar Pressure Data
 From Novel:
+![Novel Load](Img/NovelExport.png)
 To export raw ‘.lst’ files from Novel, first select all full trials you would like to export (typically .dat files), then select run application and choose emascii. From there you will need to select the output parameters. Select “sensor grid”, “frame header”, “values of pressure”, “frames”, and ensure it is tab delimited. Click ok, and then choose File -> save all, then all trials will be saved in the C:\novel\novfile\asciiout folder. Copy these raw ‘.lst’ files into the impressions matlab folder.
+
 From RSScan:
+![RSScan Load](Img/RSScanExport.png)
 To export raw RSScan data, one must select each trial individually within footscan, click export, and select entire plate roll off. Then save this generic file in your desired location. See figure above.
 
 ### Select Input Parameters and Processing Type
 Prior to running Impressions and processing any data, it is important that the user inputs the subject demographics and selects processing methods for quality data processing (see example to the lower right). Open PP_Selector_File.xlsx excel sheet and input subject demographics into the top section. Foot length is optional but suggested if you will compare to optical motion capture data. A study number is necessary because the will be the name of the folder where all exports are saved.
+![Plantar Pressure Processing Selections](Img/PPSelections.png)
 
 Next, choose your processing methods by selecting from each dropdown list in the Processing Inputs section. Lastly, determine which figures you would like to have shown at the end of processing. Note: if you opt to export a report, then temporal spatial, close up, and all forces figures along with the first 4 trials will always be exported as they are necessary for the report.
 
@@ -51,9 +57,7 @@ If you would only like to export GIFs (for a Full Gait Analysis), select “No�
 Impressions uses the plantar_load.m function to load raw text files. These can be loaded up to 10 at a time and all can be saved to a matlab data file (.mat) for quicker loading in the future. Raw files typically take 10-60 seconds depending on the duration of the sampling. For processing, copy all raw data or .mat files into the Impressions folder so that they may be loaded correctly.
 
 ### Identifying Pressures
-Impressions identifies foot pressures by using specific functions of Matlab’s image processing toolbox. These functions (links below) identify all pressure regions within the summed pressure plate image (a sum of all frames for the duration of the trial). Then Impressions joins together all regions that are within the defined foot length of each other as the foot region.
-https://www.mathworks.com/help/images/ref/bwconncomp.html
-https://www.mathworks.com/help/images/ref/regionprops.html
+Impressions identifies foot pressures by using specific functions of Matlab’s image processing toolbox [BWConnComp](https://www.mathworks.com/help/images/ref/bwconncomp.html) & [RegionProps](https://www.mathworks.com/help/images/ref/regionprops.html). These functions identify all pressure regions within the summed pressure plate image (a sum of all frames for the duration of the trial). Then Impressions joins together all regions that are within the defined foot length of each other as the foot region.
 
 ### Left/Right Classification
 These pressures are identified within a red or green box (for left and right feet respectively). Left and right feet are classified in separate ways depending on how many full steps are on the mat. If there are 1 or 3+ full steps on the mat, a linear trendline of the CoP is created and steps are split into left/right by the trendline. If two full steps are on the mat, then the two centroids of those two steps are averaged and this location is used to split the pressures into left and right sides.
