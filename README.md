@@ -58,10 +58,9 @@ From RSScan:
 To export raw RSScan data, one must select each trial individually within footscan, click export, and select entire plate roll off. Then save this generic file in your desired location. See figure above.
 
 ### Select Input Parameters and Processing Type
+<img align="right" src="Img/PPSelections.PNG">
 Prior to running Impressions and processing any data, it is important that the user inputs the subject demographics and selects processing methods for quality data processing (see example to the lower right). Open PP_Selector_File.xlsx excel sheet and input subject demographics into the top section. Foot length is optional but suggested if you will compare to optical motion capture data. A study number is necessary because the will be the name of the folder where all exports are saved.
-<p align="center">
-  <img src="Img/PPSelections.PNG">
-</p>
+
 Next, choose your processing methods by selecting from each dropdown list in the Processing Inputs section. Lastly, determine which figures you would like to have shown at the end of processing. Note: if you opt to export a report, then temporal spatial, close up, and all forces figures along with the first 4 trials will always be exported as they are necessary for the report.
 
 If you would only like to export GIFs (for a Full Gait Analysis), select “No” for Export Report. This will accelerate the processing time by not applying masks or computing temporal spatial variables.
@@ -161,18 +160,14 @@ Impressions has been validated against two separate sources: optical motion capt
 
 ### Impressions vs Optical Motion Capture (OMC)
 #### Masking Accuracy: Orientation and Position
+<img align="right" src="Img/OrientationAccuracy.PNG">
 Mask accuracy was validated by comparing the mask orientation (via foot progression angle) and position (mask placement in the global coordinate system).
 Accuracy for each of the 5 masking types are shown to the right. FPA errors for each masking method compared to optical motion capture. The median, interquartile range, and outliers are shown in red. The mean and SD are shown in black. *** = p < 0.001, * = p < 0.05.
-<p align="center">
-  <img src="Img/OrientationAccuracy.PNG">
-</p>
 
 #### Temporal Spatial Parameters
+<img align="right" src="Img/TemporalSpatialValidation.PNG">
 The accuracy of temporal spatial parameters of gait was assessed between PP mat and OMC.
 Kruskal-Wallis tests of cadence, walking speed, step length, and step width. Means for cadence, walking speed, and step length were found to have indistinguishable differences in measurements, while step width had a distinguishable difference in measurements. The difference in step width may be due to masking inaccuracy because the heel point is used for these calculations. We will be re-processing the temporal spatial comparisons with updated masking.
-<p align="center">
-  <img src="Img/TemporalSpatialValidation.PNG">
-</p>
 
 #### Impressions vs Novel
 Below is an example of the validation of pressure distribution, forces applied, and area in contact with the PP mat.
