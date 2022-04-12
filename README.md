@@ -1,4 +1,4 @@
-<img align="left" width="200" height="200" src="Img/ImpressionsLogo.png">
+<img align="right" width="200" height="200" src="Img/ImpressionsLogo.png">
 
 # Impressions
 
@@ -29,8 +29,8 @@ Impressions uses specific file types of pressure data, basic subject parameters 
 - Various Figures: PNG files of the force distributions and close up still images (pg 3&4 of report)
 - Saved XXX_Results.mat file: This file contains all the saved data from the matlab workspace so that the data may be saved in an analysis-friendly version for future reference. Most data are stored in the “DynamicPPTrials” or “Regions” structures.
 - GIF movie files for each: If selected, these GIFs show the dynamic pressure distribution and CoP progression. The black dot shows the CoP for the current frame, while the red dots show the COP from the preceding 3 frames so that CoP velocity may be better interpreted.
-![Left & Right Steps](Img/L-RSteps.gif)
-![Full Trial](Img/Trial.gif)
+<img align="center" src="Img/L-RSteps.gif">
+<img align="center" src="Trial.gif">
 
 ### Supported PP Mats and file types
 Upon initial release, Impressions only functions with data from a RS Scan 2m or Novel emedXL mat. These files can initially be loaded as raw files directly from RS Scan or Novel or as pre-processed .mat files (recommended file after first time loading the raw files).
