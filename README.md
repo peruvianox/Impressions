@@ -30,10 +30,14 @@ Impressions uses specific file types of pressure data, basic subject parameters 
 - Saved XXX_Results.mat file: This file contains all the saved data from the matlab workspace so that the data may be saved in an analysis-friendly version for future reference. Most data are stored in the “DynamicPPTrials” or “Regions” structures.
 - GIF movie files for each: If selected, these GIFs show the dynamic pressure distribution and CoP progression. The black dot shows the CoP for the current frame, while the red dots show the COP from the preceding 3 frames so that CoP velocity may be better interpreted.
 #### Left and Right Step GIFs
-<img align="center" src="Img/L-RSteps.gif">
+<p align="center">
+  <img src="Img/L-RSteps.gif">
+</p>
 
 #### Full Trial GIF
-<img align="center" src="Img/Trial.gif">
+<p align="center">
+  <img src="Img/Trial.gif">
+</p>
 
 ### Supported PP Mats and file types
 Upon initial release, Impressions only functions with data from a RS Scan 2m or Novel emedXL mat. These files can initially be loaded as raw files directly from RS Scan or Novel or as pre-processed .mat files (recommended file after first time loading the raw files).
@@ -41,22 +45,23 @@ Upon initial release, Impressions only functions with data from a RS Scan 2m or 
 ## Procedures
 ### Export Raw Plantar Pressure Data
 From Novel:
-
-<img align="center" src="Img/NovelExport.PNG">
+<p align="center">
+  <img src="Img/NovelExport.PNG">
+</p>
 
 To export raw ‘.lst’ files from Novel, first select all full trials you would like to export (typically .dat files), then select run application and choose emascii. From there you will need to select the output parameters. Select “sensor grid”, “frame header”, “values of pressure”, “frames”, and ensure it is tab delimited. Click ok, and then choose File -> save all, then all trials will be saved in the C:\novel\novfile\asciiout folder. Copy these raw ‘.lst’ files into the impressions matlab folder.
 
 From RSScan:
-
-<img align="center" src="Img/RSScanExport.PNG">
-
+<p align="center">
+  <img src="Img/RSScanExport.PNG">
+</p>
 To export raw RSScan data, one must select each trial individually within footscan, click export, and select entire plate roll off. Then save this generic file in your desired location. See figure above.
 
 ### Select Input Parameters and Processing Type
 Prior to running Impressions and processing any data, it is important that the user inputs the subject demographics and selects processing methods for quality data processing (see example to the lower right). Open PP_Selector_File.xlsx excel sheet and input subject demographics into the top section. Foot length is optional but suggested if you will compare to optical motion capture data. A study number is necessary because the will be the name of the folder where all exports are saved.
-
-<img align="center" src="Img/PPSelections.PNG">
-
+<p align="center">
+  <img src="Img/PPSelections.PNG">
+</p>
 Next, choose your processing methods by selecting from each dropdown list in the Processing Inputs section. Lastly, determine which figures you would like to have shown at the end of processing. Note: if you opt to export a report, then temporal spatial, close up, and all forces figures along with the first 4 trials will always be exported as they are necessary for the report.
 
 If you would only like to export GIFs (for a Full Gait Analysis), select “No” for Export Report. This will accelerate the processing time by not applying masks or computing temporal spatial variables.
@@ -79,37 +84,50 @@ Foot progression angles are determined entirely from the mask. For more masking 
 
 ### Manual
 The manual masking method requires user input to identify the base of the heel and 2nd toe. Once these are input into Impressions by clicking for each pressure, a line through those two points identifies the foot progression angle.
-<img align="right" src="Img/SelectPoints.PNG">
+<p align="center">
+  <img src="Img/SelectPoints.PNG">
+</p>
 
 ### General
 The general mask uses specific functions in Matlab’s image processing toolbox (see above) to assign a centroid and major axis to each identified step. The major axis angle is projected through the centroid of the entire foot pressure.
 
 ### Heel-Centroid
 The heel-centroid method uses the peak heel region location and the whole foot centroid, and generates a line along the length of the foot that bisects these two points (black circles).
-<img align="right" src="Img/HCMask.PNG">
+<p align="center">
+  <img src="Img/HCMask.PNG">
+</p>
 
 ### CoP 
 The center of pressure (CoP) masking method uses the entire center of pressure progression for each step. A linear trendline is generated from all CoP points during stance.
-<img align="right" src="Img/CoPMask.PNG">
+<p align="center">
+  <img src="Img/CoPMask.PNG">
+</p>
 
 ### 66% CoP
 The 66% CoP masking method uses only the first 66% of the CoP to generate its linear trendline. The rationale behind this idea, is that in typical walkers during late stance, the CoP progressed medially as the large toe is used during push off.
-<img align="right" src="Img/66CoP.PNG">
+<p align="center">
+  <img src="Img/66CoP.PNG">
+</p>
 
 ### CoP Inter-Peak
 Peaks are measured along the global reference frame, thus if the participant is not walking along the length of the mat, or has excessively external foot progression angles (> 45 deg), this method may not be accurate. The first two major peaks along the length of the mat correspond to the heel and forefoot peak pressure regions (the third corresponds to the large toe). The CoP progression between the heel and forefoot peaks is extracted and used to create a linear regression for the inter-peak method.
-<img align="right" src="Img/IPMask.PNG">
+<p align="center">
+  <img src="Img/IPMask.PNG">
+</p>
 
 ## Overall Masking Methods
 Once the foot progression angle is identified, the process of masking is the same for all mask types. These masks split the foot pressure into six regions (medial/lateral divisions of heel, arch, and forefoot). The line of foot progression bisects the foot into medial and lateral regions. Impressions will search along the length of the foot progression line to find the edge of the foot region which defines the heel base and toe top of the mask (red circles). This length is split into 30% heel, 30% arch, 40% forefoot regions and HA = heel-arch and FA = fore-arch points are located (purple circles). Impressions also searches medially and laterally in lines parallel to the foot progression line to identify the medial and lateral borders of the pressure. Lines perpendicular to the foot progression angle bisect the HA/FAs to split the pressure longitudinally.
-<img align="right" src="Img/MaskSegmentation.PNG">
+<p align="center">
+  <img src="Img/MaskSegmentation.PNG">
+</p>
 
 ### Mask Normalization
 After the masks are created, each step is normalized by re-orienting the mask using its foot progression angle. It is rotated by the mask orientation to display each step upright. Once the orientation is normalized, then the dimensions of each step is normalized to 100% of its length and width, and finally normalized to 100% of the stance period. This results in a 100x100x100 matrix displaying dynamic foot pressures by the respective length, width, and duration of each step. All this data can be found in the “Norm” variable within the results .mat file for each participant.
 
 Once each step is normalized, it allows us to combine all the steps for each participant and compare it to typical walkers. This is displayed in the figure below, showing the average and normalized summed step, and each center of pressure trajectory for all steps compared to a set of typical walkers. The default typical walkers are a set of 20 individuals collected in summer 2018 at CGMA.
-
-<img align="center" src="Img/AvgStepCoP.PNG">
+<p align="center">
+  <img src="Img/AvgStepCoP.PNG">
+</p>
 
 ## Center of Pressure Index (Medial-Lateral and Anterior-Posterior)
 Once step normalization is complete, we can now compare all steps to a typical population to quantify deviation. A graphic of this is shown above with the center of pressure trajectories, and compared to the norm (black line = average, dashed line = standard deviation). However, this can also be quantified by a center of pressure index. There are many different definitions of CoP index, this adaptation is borrowed from Shriner’s Hospital Spokane, where the deviation between the average CoP and a group norm is quantified by the medial and lateral deviation (in % of foot length/width) at each interval (1-100%) of stance phase. Then the root mean square of this deviation is calculated to obtain a single value (for AP and ML of the left and right feet).
@@ -122,9 +140,9 @@ After each valid step and mask are identified by Impressions, a mask for each of
 
 ## Report
 Impressions will export an automated report forquick overview and display of gait measures. This 4-page report is exported into an excel spreadsheet which can then be printed for clinician or patient.
-
-<img align="center" src="Img/Report.PNG">
-
+<p align="center">
+  <img src="Img/Report.PNG">
+</p>
 ### Page 1 (top left)
 The first page of the report displays the subject demographics, general processing settings, foot progression angles, and the first 4 PP trials. Only the first 4 are shown because displaying more shrinks the size of each trial. The foot progression angle chart will show the values of the first 2 steps on each side, up to 10 trials. The average and standard deviation of these angles are shown on the right.
 
@@ -146,16 +164,19 @@ Impressions has been validated against two separate sources: optical motion capt
 #### Masking Accuracy: Orientation and Position
 Mask accuracy was validated by comparing the mask orientation (via foot progression angle) and position (mask placement in the global coordinate system).
 Accuracy for each of the 5 masking types are shown to the right. FPA errors for each masking method compared to optical motion capture. The median, interquartile range, and outliers are shown in red. The mean and SD are shown in black. *** = p < 0.001, * = p < 0.05.
-
-<img align="center" src="Img/OrientationAccuracy.PNG">
+<p align="center">
+  <img src="Img/OrientationAccuracy.PNG">
+</p>
 
 #### Temporal Spatial Parameters
 The accuracy of temporal spatial parameters of gait was assessed between PP mat and OMC.
 Kruskal-Wallis tests of cadence, walking speed, step length, and step width. Means for cadence, walking speed, and step length were found to have indistinguishable differences in measurements, while step width had a distinguishable difference in measurements. The difference in step width may be due to masking inaccuracy because the heel point is used for these calculations. We will be re-processing the temporal spatial comparisons with updated masking.
-
-<img align="center" src="Img/TemporalSpatialValidation.PNG">
+<p align="center">
+  <img src="Img/TemporalSpatialValidation.PNG">
+</p>
 
 #### Impressions vs Novel
 Below is an example of the validation of pressure distribution, forces applied, and area in contact with the PP mat.
-
-<img align="center" src="Img/ImpressionsNovelValidation.PNG">
+<p align="center">
+  <img src="Img/ImpressionsNovelValidation.PNG">
+</p>
